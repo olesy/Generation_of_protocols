@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    {% for role in user.roles %}
+        {{ role.name }}
+    {% endfor %}
+    {{ user.username }} {{ user.email }} {{ user.first_name }} {{ user.last_name }}
+
+    {% if current_user.has_role("tutor") %}
+        <a href="{{ url_for('profile.edit_profile', username = user.username) }}">Редактировать профиль</a>
+
+        {% if form %}
+            {{ wtf.quick_form(form) }}
+        {% endif %}
+    {% endif %}
+    <a href="{{ url_for('profile.reset_password', username = user.username) }}">Сбросить пароль</a>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+    {% if form %}
+        {{ wtf.quick_form(form) }}
+
+    {% endif %}
+    {% if df is not none %}
+        {% if not df.empty %}
+            {{ df.to_html() | safe }}
+        {% endif %}
+    {% endif %}
+
+
+
+{% endblock %}
